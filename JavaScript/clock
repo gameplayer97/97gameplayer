@@ -1,0 +1,16 @@
+<script>
+    var hour=document.getElementById('hou');
+    var min=document.getElementById('mi');
+    var sec=document.getElementById('se');
+    var s=0,m=0,h=0,ms=0;
+    setInterval(function() {
+        var date=new Date(); 
+        ms=date.getMilliseconds; 
+        s=date.getSeconds()
+        m=date.getMinutes() 
+        h=date.getHours()%12
+        sec.style.webkitTransform="rotate("+ s*6 +"deg)";
+        min.style.webkitTransform="rotate("+ m*6 +"deg)";
+        hour.style.webkitTransform="rotate("+ h*30 +"deg)";
+},1000);
+</script>
