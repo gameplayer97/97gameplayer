@@ -1,0 +1,50 @@
+<script>
+    function check(){
+        var user=document.getElementById('user')
+        var password=document.getElementById('password')
+        var repassword=document.getElementById('repassword')
+        var wronguser=document.getElementById('wronguser')
+        var wrongpassword=document.getElementById('wrongpassword')
+        var wrongrepassword=document.getElementById('wrongrepassword')
+        ajax('json.json',function(str){
+            var namearr=JSON.parse(str)
+            if(user.value==''||user.value==null){
+                    wronguser.innerHTML='请输入您的用户名'
+                    wronguser.className='reuse'
+            }
+            else{
+                for(var i=0;i<namearr.length;i++){
+                    if(user.value==namearr[i]){
+                        wronguser.innerHTML='这个用户名已被注册，请更换用户名'
+                        wronguser.className='reuse'
+                         x=false
+                        break
+                    }else{
+                        wronguser.innerHTML=''
+                        wronguser.className='canuse'
+                        x=true
+                    }
+                }
+            }
+            if(password.value===repassword.value&&password.value!=''&&user.value!=''&&x==true){
+                wronguser.className=''
+                wrongpassword.innerHTML=''
+                wrongrepassword.innerHTML=''
+                wrongpassword.className=''
+                alert('注册成功')
+                window.location.href='http://www.baidu.com'
+            }
+        })
+        if(password.value==''||password.value==null){
+                wrongpassword.innerHTML='请输入密码'
+                wrongpassword.className='reuse'
+            }
+            else if(password.value!=repassword.value){
+                wrongrepassword.innerHTML='两次输入的密码不一致，请重新输入'
+                wrongrepassword.className='reuse'
+            }else{
+                wrongrepassword.innerHTML=''
+                wrongrepassword.className='reuse'
+            }
+    }
+</script>
